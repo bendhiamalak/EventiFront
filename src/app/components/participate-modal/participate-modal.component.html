@@ -1,0 +1,72 @@
+  <div class="modal-header">
+    <h4 class="modal-title">{{ eventName }} - Participate</h4>
+    <button type="button" class="btn border-0 bg-transparent" aria-label="Close" (click)="activeModal.dismiss('Cancel')">
+      <i class="bi bi-x-lg fs-4 text-dark"></i>
+    </button>
+    
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="participateForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="fullName" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="fullName" formControlName="fullName" required>
+        <div *ngIf="participateForm.get('fullName')?.invalid && participateForm.get('fullName')?.touched" class="text-danger">
+          Full Name is required.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email" required>
+        <div *ngIf="participateForm.get('email')?.invalid && participateForm.get('email')?.touched" class="text-danger">
+          Please enter a valid email.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input type="tel" class="form-control" id="phoneNumber" formControlName="phoneNumber" required>
+        <div *ngIf="participateForm.get('phoneNumber')?.invalid && participateForm.get('phoneNumber')?.touched" class="text-danger">
+          Phone Number is required.
+        </div>
+      </div>
+
+<div class="mb-4">
+  <label for="paymentMethod" class="form-label fw-semibold text-primary">Choose Payment Method</label>
+  <div class="input-group">
+    <select class="form-select form-select-lg" id="paymentMethod" formControlName="paymentMethod">
+      <option value="espece">💵 Espèce</option>
+      <option value="carte">💳 Card</option>
+    </select>
+  </div>
+</div>
+
+
+<div *ngIf="participateForm.get('paymentMethod')?.value === 'carte'">
+  <div class="mb-3">
+    <label for="cardOwner" class="form-label">Card Owner</label>
+    <input type="text" class="form-control" id="cardOwner" formControlName="cardOwner">
+    <div *ngIf="participateForm.get('cardOwner')?.invalid && participateForm.get('cardOwner')?.touched" class="text-danger">
+      Card Owner is required.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="cardNumber" class="form-label">Card Number</label>
+    <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber">
+    <div *ngIf="participateForm.get('cardNumber')?.invalid && participateForm.get('cardNumber')?.touched" class="text-danger">
+      Card Number is required.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="cardCode" class="form-label">Security Code</label>
+    <input type="password" class="form-control" id="cardCode" formControlName="cardCode">
+    <div *ngIf="participateForm.get('cardCode')?.invalid && participateForm.get('cardCode')?.touched" class="text-danger">
+      Security Code is required.
+    </div>
+  </div>
+</div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cancel')">Cancel</button>
+    <button type="button" class="btn btn-primary" [disabled]="participateForm.invalid" (click)="onSubmit()">Participate</button>
+  </div>

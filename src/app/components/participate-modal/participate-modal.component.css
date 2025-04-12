@@ -1,0 +1,12 @@
+
+  .text-danger {
+    font-size: 0.875rem;
+  }
+  
+  .modal-content {
+    border-radius: 10px;
+  }
+  
+  .modal-header, .modal-footer {
+    border-color: #dee2e6; 
+  }

@@ -1,0 +1,84 @@
+<div class="modal-header">
+    <h4 class="modal-title">Add New Event</h4>
+    <button type="button" class="btn border-0 bg-transparent" aria-label="Close" (click)="activeModal.dismiss('Cancel')">
+        <i class="bi bi-x-lg fs-4 text-dark"></i>
+      </button>  </div>
+  
+  <div class="modal-body">
+    <form [formGroup]="eventForm">
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" formControlName="title">
+        <div class="text-danger" *ngIf="eventForm.get('title')?.invalid && eventForm.get('title')?.touched">
+            Title is required.
+          </div>    
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" rows="3" formControlName="description"></textarea>
+        <div class="text-danger" *ngIf="eventForm.get('description')?.invalid && eventForm.get('description')?.touched">
+            Description is required.
+          </div>
+          
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Date</label>
+        <input type="date" class="form-control" formControlName="date">
+        <div class="text-danger" *ngIf="eventForm.get('date')?.invalid && eventForm.get('date')?.touched">
+            Date is required.
+          </div>
+          
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Price</label>
+        <input type="number" class="form-control" formControlName="price">
+        <div class="text-danger" *ngIf="eventForm.get('price')?.invalid && eventForm.get('price')?.touched">
+            Price is required.
+          </div>
+          
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Max Participants</label>
+        <input type="number" class="form-control" formControlName="maxParticipants">
+        <div class="text-danger" *ngIf="eventForm.get('maxParticipants')?.invalid && eventForm.get('maxParticipants')?.touched">
+            Max Participants is required.
+          </div>
+          
+      </div>
+  
+      <div class="mb-4">
+        <label class="form-label">Category</label>
+        <div class="input-group">
+        <select class="form-select" formControlName="category">
+          <option value="">-- Select Category --</option>
+          <option value="Séminaire">Séminaire</option>
+          <option value="Conférence">Conférence</option>
+          <option value="Atelier">Atelier</option>
+        </select>
+    </div>
+      </div>
+      
+  
+      <div class="mb-3">
+        <label class="form-label">Cover Image</label>
+        <input type="file" class="form-control" (change)="onFileChange($event)" accept="image/*">
+        <div *ngIf="imagePreview" class="mt-2">
+          <img [src]="imagePreview" alt="Preview" class="img-thumbnail" width="200">
+        </div>
+        <div class="text-danger" *ngIf="eventForm.get('cover')?.invalid && eventForm.get('cover')?.touched">
+            Cover image is required.
+          </div>
+          
+      </div>
+    </form>
+  </div>
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cancel')">Cancel</button>
+    <button type="button" class="btn btn-primary" [disabled]="eventForm.invalid" (click)="onSubmit()">Add Event</button>
+  </div>
+  
