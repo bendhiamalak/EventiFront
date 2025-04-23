@@ -1,0 +1,73 @@
+<body>
+  <div class="card border-primary mb-3" style="max-width: 25rem">
+    <img src="img/EventiLogo.png" alt="Clinic Logo" />
+    <div class="card-body">
+      <h4 class="card-title">Login</h4>
+
+      <form [formGroup]="loginForm">
+        <div>
+          <label for="emailInput" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="emailInput"
+            formControlName="email"
+            placeholder="Enter your email"
+            [class.is-invalid]="
+              email?.invalid && (email?.dirty || email?.touched)
+            "
+          />
+          <div
+            *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+            class="invalid-feedback"
+          >
+            <div *ngIf="email?.errors?.['required']">Email is required</div>
+            <div *ngIf="email?.errors?.['email']">Invalid email format</div>
+            <div *ngIf="email?.errors?.['invalid']">Incorrect email</div>
+          </div>
+        </div>
+
+        <div>
+          <label for="passwordInput" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="passwordInput"
+            formControlName="password"
+            placeholder="Enter your password"
+            [class.is-invalid]="
+              password?.invalid && (password?.dirty || password?.touched)
+            "
+          />
+          <div
+            *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+            class="invalid-feedback"
+          >
+            <div *ngIf="password?.errors?.['required']">
+              Password is required
+            </div>
+            <div *ngIf="password?.errors?.['invalid']">Incorrect password</div>
+          </div>
+        </div>
+
+        <div class="buttons-container mt-3">
+          <button
+            type="button"
+            class="btn btn-info"
+            (click)="navigateToPatients()"
+            [disabled]="loginForm.invalid"
+          >
+            Login
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="navigateToHome()"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

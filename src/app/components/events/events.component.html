@@ -1,0 +1,84 @@
+<div class="container-fluid blog pb-5">
+  <div class="container pb-5">
+    <div
+      class="text-center mx-auto pb-5 wow fadeInUp"
+      data-wow-delay="0.2s"
+      style="max-width: 800px"
+    >
+      <h4 class="text-dark">Our Events</h4>
+      <h1 class="display-5 mb-4">Latest Events</h1>
+      <p class="mb-0">
+        Explore a variety of exciting events around you. Use the filters below
+        to find events by category, location or date!
+      </p>
+    </div>
+
+    <div class="row mb-5 wow fadeInUp" data-wow-delay="0.3s">
+      <div class="col-md-8 mb-3 mb-md-0">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Rechercher des événements..."
+          [(ngModel)]="filters.title"
+          (input)="applyFilters()"
+        />
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-warning w-100" (click)="clearFilters()">
+          Réinitialiser les filtres
+        </button>
+      </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+      <div class="col-md-4">
+        <select
+          class="form-select"
+          [(ngModel)]="filters.categorie"
+          (change)="applyFilters()"
+        >
+          <option value="">Toutes les catégories</option>
+          <option *ngFor="let category of categories" [value]="category">
+            {{ category }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Filtrer par lieu"
+          [(ngModel)]="filters.place"
+          (input)="applyFilters()"
+        />
+      </div>
+
+      <div class="col-md-4">
+        <input
+          type="date"
+          class="form-control"
+          [(ngModel)]="filters.date"
+          (change)="applyFilters()"
+        />
+      </div>
+    </div>
+
+    <div *ngIf="eventList && eventList.length > 0; else noEvents">
+      <div class="row g-4">
+        <div
+          *ngFor="let event of eventList"
+          class="col-12 col-sm-6 col-md-4 col-lg-3"
+        >
+          <app-event-card [evenement]="event"></app-event-card>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noEvents>
+      <div class="text-center text-muted">
+        Aucun événement trouvé avec les filtres sélectionnés.
+      </div>
+    </ng-template>
+  </div>
+</div>

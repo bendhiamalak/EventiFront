@@ -1,0 +1,80 @@
+<div>
+  <div class="blog-item shadow-sm rounded overflow-hidden">
+    <div class="blog-img">
+      <a href="#">
+        <img
+          [src]="evenement.image"
+          class="img-fluid w-100 rounded-top"
+          alt="Image"
+        />
+      </a>
+      <div
+        class="blog-overlay d-flex justify-content-between align-items-center"
+      >
+        <div class="blog-category text-dark">
+          <i class="fa-solid fa-location-dot text-primary me-2"></i>
+          {{ evenement.lieu }}
+        </div>
+        <div class="blog-date text-dark">
+          <i class="fa-solid fa-clock text-primary me-2"></i>
+          {{ evenement.date | date : "dd MMMM yyyy" }}
+        </div>
+      </div>
+    </div>
+    <div class="blog-content p-4">
+      <a href="#" class="h4 d-inline-block mb-4 text-dark fw-bold">{{
+        evenement.title
+      }}</a>
+      <p class="mb-3 text-secondary">
+        {{ evenement.description }}
+      </p>
+      <hr />
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h5 class="mb-0">Price:</h5>
+        <h4 class="text-primary mb-0">{{ evenement.prix | currency }}</h4>
+      </div>
+      <div class="d-flex justify-content-center align-items-center">
+        <a href="#" class="btn btn-primary rounded-pill py-2 px-4">
+          Participate
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="col-lg-4">
+  <div class="blog-item shadow-sm rounded overflow-hidden">
+    <div class="blog-img">
+      <a href="#">
+        <img src="img/conference2.jpg" alt="Image" />
+      </a>
+      <div
+        class="blog-overlay d-flex justify-content-between align-items-center"
+      >
+        <div class="blog-category text-dark">
+          <i class="fa-solid fa-location-dot text-primary me-2"></i>
+          Cite Culture, Tunis
+        </div>
+        <div class="blog-date text-dark">
+          <i class="fa-solid fa-clock text-primary me-2"></i>
+          August 19, 2025
+        </div>
+      </div>
+    </div>
+
+    <div class="blog-content p-4 bg-white">
+      <a href="#" class="h5 d-inline-block mb-3 text-dark fw-bold">
+        Why Children Don’t Like Getting Out Of The Water
+      </a>
+      <p class="mb-4 text-secondary">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </p>
+      <hr />
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h5 class="mb-0">Price:</h5>
+        <h4 class="text-primary mb-0">20dt</h4>
+      </div>
+      <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Participate</a>
+    </div>
+  </div>
+</div>-->

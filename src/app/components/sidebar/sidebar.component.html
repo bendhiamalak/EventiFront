@@ -1,0 +1,70 @@
+<div class="sidebar" [class.collapsed]="isCollapsed">
+  <div
+    class="sidebar-header d-flex justify-content-between align-items-center p-3"
+  >
+    <div
+      *ngIf="!isCollapsed"
+      class="d-flex justify-content-between align-items-end"
+    >
+      <img class="eventLogo" src="img/EventiLogo.png" alt="Logo" />
+      <h3 class="sidebar-title">Eventi</h3>
+    </div>
+    <button
+      class="btn btn-sm btn-outline-dark toggle-btn"
+      (click)="toggleSidebar()"
+      title="Réduire/Étendre le menu"
+    >
+      <i
+        class="fas"
+        [class.fa-chevron-left]="!isCollapsed"
+        [class.fa-chevron-right]="isCollapsed"
+      ></i>
+    </button>
+  </div>
+
+  <ul class="nav flex-column mt-3">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        (click)="navigate('dashboard')"
+        [class.active]="activeItem === 'dashboard'"
+      >
+        <i class="fas fa-tachometer-alt me-2"></i>
+        <span *ngIf="!isCollapsed">Tableau de bord</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        (click)="navigate('events')"
+        [class.active]="activeItem === 'events'"
+      >
+        <i class="fas fa-calendar me-2"></i>
+        <span *ngIf="!isCollapsed">Événements</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        (click)="navigate('participants')"
+        [class.active]="activeItem === 'participants'"
+      >
+        <i class="fas fa-users me-2"></i>
+        <span *ngIf="!isCollapsed">Participants</span>
+      </a>
+    </li>
+
+    <li class="nav-item logout-item mt-3">
+      <a
+        class="nav-link text-secondary"
+        (click)="logout()"
+        title="Se déconnecter"
+      >
+        <i class="fas fa-sign-out-alt me-2"></i>
+        <span *ngIf="!isCollapsed">Déconnexion</span>
+      </a>
+    </li>
+  </ul>
+</div>

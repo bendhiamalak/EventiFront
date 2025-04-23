@@ -1,0 +1,85 @@
+{
+    "evenements": [
+      {
+        "title": "Tech Conference 2025",
+        "description": "A gathering of tech enthusiasts discussing the future of AI and Web3.",
+        "date": "2025-05-20",
+        "lieu": "Cité des Sciences, Tunis",
+        "capacite": 300,
+        "prix": 50,
+        "image": "img/conference1.jpg",
+        "categorie": "Conférences"
+      },
+      {
+        "title": "Startup Pitch Night",
+        "description": "Discover innovative startups pitching their ideas to investors.",
+        "date": "2025-06-05",
+        "lieu": "Flat6Labs, Tunis",
+        "capacite": 150,
+        "prix": 25,
+        "image": "img/conference2.jpg",
+        "categorie": "Séminaires"
+      },
+      {
+        "title": "Art & Culture Festival",
+        "description": "A 3-day celebration of Tunisian art, music, and culture.",
+        "date": "2025-07-10",
+        "lieu": "Amphithéâtre de Carthage",
+        "capacite": 500,
+        "prix": 30,
+        "image": "img/conference.jpg",
+        "categorie": "Conférences"
+      },
+      {
+        "title": "UX/UI Design Bootcamp",
+        "description": "Hands-on workshop on modern UX and UI techniques.",
+        "date": "2025-08-12",
+        "lieu": "GoMyCode, Lac 1",
+        "capacite": 60,
+        "prix": 80,
+        "image": "img/conference2.jpg",
+        "categorie": "Ateliers"
+      },
+      {
+        "title": "Art & Culture Festival",
+        "description": "Try out the latest games and meet top developers in the industry.",
+        "date": "2025-09-03",
+        "lieu": "Parc des Expositions du Kram",
+        "capacite": 1000,
+        "prix": 40,
+        "image": "img/conference1.jpg",
+        "categorie": "Conférences"
+      },
+      {
+        "title": "Tech Conference 2025",
+        "description": "A gathering of tech enthusiasts discussing the future of AI and Web3.",
+        "date": "2025-05-20",
+        "lieu": "Cité des Sciences, Tunis",
+        "capacite": 300,
+        "prix": 50,
+        "image": "img/conference1.jpg",
+        "categorie": "Conférences"
+      },
+      {
+        "title": "Startup Pitch Night",
+        "description": "Discover innovative startups pitching their ideas to investors.",
+        "date": "2025-06-05",
+        "lieu": "Flat6Labs, Tunis",
+        "capacite": 150,
+        "prix": 25,
+        "image": "img/conference2.jpg",
+        "categorie": "Séminaires"
+      },
+      {
+        "title": "Art & Culture Festival",
+        "description": "A 3-day celebration of Tunisian art, music, and culture.",
+        "date": "2025-07-10",
+        "lieu": "Amphithéâtre de Carthage",
+        "capacite": 500,
+        "prix": 30,
+        "image": "img/conference.jpg",
+        "categorie": "Conférences"
+      }
+    ]
+  }
+  
