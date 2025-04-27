@@ -1,4 +1,5 @@
 export class Participant {
+    id!:number ;
     name!: string;
     surname!:string;
     email!:string;

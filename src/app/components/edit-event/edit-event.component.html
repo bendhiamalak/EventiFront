@@ -1,0 +1,220 @@
+<div class="modal-header">
+  <h5 class="modal-title">{{ isUpdate ? "Update Event" : "Add Event" }}</h5>
+  <button type="button" class="close" (click)="onCancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+    <!-- Titre -->
+    <div class="form-group mb-3">
+      <label for="title">Title:</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        class="form-control"
+        required
+        [(ngModel)]="event.title"
+        #title="ngModel"
+        [ngClass]="{
+          'is-invalid': title.invalid && (title.dirty || title.touched)
+        }"
+      />
+      <div
+        *ngIf="title.invalid && (title.dirty || title.touched)"
+        class="invalid-feedback"
+      >
+        Title is required.
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group mb-3">
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        name="description"
+        class="form-control"
+        rows="3"
+        [(ngModel)]="event.description"
+        #description="ngModel"
+      ></textarea>
+    </div>
+
+    <div class="row d-flex justify-content-between">
+      <div class="col form-group mb-3">
+        <label for="date">Date:</label>
+        <input
+          type="datetime-local"
+          id="date"
+          name="date"
+          class="form-control"
+          required
+          [(ngModel)]="eventDate"
+          #date="ngModel"
+          [ngClass]="{
+            'is-invalid': date.invalid && (date.dirty || date.touched)
+          }"
+        />
+        <div
+          *ngIf="date.invalid && (date.dirty || date.touched)"
+          class="invalid-feedback"
+        >
+          Date is required.
+        </div>
+      </div>
+
+      <!-- Lieu -->
+      <div class="col form-group mb-3">
+        <label for="lieu">Location:</label>
+        <input
+          type="text"
+          id="lieu"
+          name="lieu"
+          class="form-control"
+          required
+          [(ngModel)]="event.lieu"
+          #lieu="ngModel"
+          [ngClass]="{
+            'is-invalid': lieu.invalid && (lieu.dirty || lieu.touched)
+          }"
+        />
+        <div
+          *ngIf="lieu.invalid && (lieu.dirty || lieu.touched)"
+          class="invalid-feedback"
+        >
+          Location is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-between">
+      <!-- Capacité -->
+      <div class="col form-group mb-3">
+        <label for="capacite">Capacity:</label>
+        <input
+          type="number"
+          id="capacite"
+          name="capacite"
+          class="form-control"
+          required
+          min="1"
+          [(ngModel)]="event.capacite"
+          #capacite="ngModel"
+          [ngClass]="{
+            'is-invalid':
+              capacite.invalid && (capacite.dirty || capacite.touched)
+          }"
+        />
+        <div
+          *ngIf="capacite.invalid && (capacite.dirty || capacite.touched)"
+          class="invalid-feedback"
+        >
+          Capacity must be at least 1.
+        </div>
+      </div>
+
+      <!-- Catégorie -->
+      <div class="col form-group mb-3">
+        <label for="categorie">Category:</label>
+        <select
+          id="categorie"
+          name="categorie"
+          class="form-control"
+          required
+          [(ngModel)]="event.categorie"
+          #categorie="ngModel"
+          [ngClass]="{
+            'is-invalid':
+              categorie.invalid && (categorie.dirty || categorie.touched)
+          }"
+        >
+          <option *ngFor="let cat of categories" [value]="cat">
+            {{ getCategoryLabel(cat) }}
+          </option>
+        </select>
+        <div
+          *ngIf="categorie.invalid && (categorie.dirty || categorie.touched)"
+          class="invalid-feedback"
+        >
+          Category is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-between">
+      <!-- Prix -->
+      <div class="col form-group mb-3">
+        <label for="prix">Price (dt):</label>
+        <input
+          type="number"
+          id="prix"
+          name="prix"
+          class="form-control"
+          required
+          min="0"
+          step="0.01"
+          [(ngModel)]="event.prix"
+          #prix="ngModel"
+          [ngClass]="{
+            'is-invalid': prix.invalid && (prix.dirty || prix.touched)
+          }"
+        />
+        <div
+          *ngIf="prix.invalid && (prix.dirty || prix.touched)"
+          class="invalid-feedback"
+        >
+          Price must be a positive number.
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="col form-group mb-3">
+        <label for="image">Image URL:</label>
+        <input
+          type="text"
+          id="image"
+          name="image"
+          class="form-control"
+          [(ngModel)]="event.image"
+        />
+        <small class="form-text text-muted"
+          >Leave empty to use default image</small
+        >
+      </div>
+    </div>
+    <!-- Image Preview -->
+    <div class="mb-3" *ngIf="event.image">
+      <label>Image Preview:</label>
+      <div>
+        <img
+          [src]="event.image || 'assets/images/default-event.png'"
+          class="img-thumbnail"
+          style="max-height: 200px"
+        />
+      </div>
+    </div>
+
+    <!-- Spinner -->
+    <div
+      *ngIf="isLoading"
+      class="spinner-border text-primary mb-3"
+      role="status"
+    >
+      <span class="visually-hidden">Loading...</span>
+    </div>
+
+    <!-- Buttons -->
+    <button
+      type="submit"
+      [disabled]="eventForm.invalid || isLoading"
+      class="btn btn-primary me-2"
+    >
+      {{ isUpdate ? "Update" : "Save" }}
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="onCancel()">
+      Cancel
+    </button>
+  </form>
+</div>

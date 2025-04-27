@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,8 +9,11 @@ export class SidebarComponent {
   isCollapsed = false;
   activeItem = 'dashboard';
 
+  @Output() toggle = new EventEmitter<boolean>();
+
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed;
+    this.toggle.emit(this.isCollapsed);
   }
 
   navigate(route: string) {

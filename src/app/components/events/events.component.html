@@ -33,8 +33,11 @@
     <div class="row g-3 mb-4">
       <div class="col-md-4">
         <select
-          class="form-select"
+          id="categoryFilter"
+          name="categoryFilter"
+          class="form-control"
           [(ngModel)]="filters.categorie"
+          #categoryFilter="ngModel"
           (change)="applyFilters()"
         >
           <option value="">Toutes les catégories</option>
@@ -63,14 +66,21 @@
         />
       </div>
     </div>
-
+    <div *ngIf="isLoading" class="d-flex justify-content-center my-4">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
     <div *ngIf="eventList && eventList.length > 0; else noEvents">
       <div class="row g-4">
         <div
           *ngFor="let event of eventList"
           class="col-12 col-sm-6 col-md-4 col-lg-3"
         >
-          <app-event-card [evenement]="event"></app-event-card>
+          <app-event-card
+            [evenement]="event"
+            (participate)="onParticipate($event)"
+          ></app-event-card>
         </div>
       </div>
     </div>
@@ -80,5 +90,22 @@
         Aucun événement trouvé avec les filtres sélectionnés.
       </div>
     </ng-template>
+  </div>
+</div>
+<div class="modal-backdrop fade show" *ngIf="showParticipationModal"></div>
+<div
+  class="modal fade show d-block"
+  *ngIf="showParticipationModal"
+  tabindex="-1"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <app-participate-event
+        [eventId]="selectedEventId"
+        (submitParticipation)="handleParticipation($event)"
+        (cancel)="cancelParticipation()"
+      >
+      </app-participate-event>
+    </div>
   </div>
 </div>

@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AdminAccueilComponent } from './components/admin-accueil/admin-accueil.component';
 import { AdminEventComponent } from './components/admin-event/admin-event.component';
+import { EventDetailComponent } from './components/event-detail/event-detail.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
     component:AdminAccueilComponent,
     children: [
         {path:'events', component:AdminEventComponent},
+        { path: 'viewDetail/:id', component: EventDetailComponent }
     ]
 },
 ];

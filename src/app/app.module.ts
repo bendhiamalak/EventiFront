@@ -18,6 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AdminAccueilComponent } from './components/admin-accueil/admin-accueil.component';
 import { AdminEventComponent } from './components/admin-event/admin-event.component';
+import { EditEventComponent } from './components/edit-event/edit-event.component';
+import { EventDetailComponent } from './components/event-detail/event-detail.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { AdminEventComponent } from './components/admin-event/admin-event.compon
     LoginComponent,
     SidebarComponent,
     AdminAccueilComponent,
-    AdminEventComponent
+    AdminEventComponent,
+    EditEventComponent,
+    EventDetailComponent
   ],
   imports: [
     BrowserModule,

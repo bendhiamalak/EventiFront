@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Evenement } from '../../../models/evenement';
 
 @Component({
@@ -8,4 +8,11 @@ import { Evenement } from '../../../models/evenement';
 })
 export class EventCardComponent {
   @Input() evenement!:Evenement
+  @Output() participate = new EventEmitter<number>(); 
+
+  showParticipationModal = false;
+
+  openParticipationModal() {
+    this.participate.emit(this.evenement.id);
+  }
 }

@@ -1,0 +1,155 @@
+<div class="container ">
+  <div *ngIf="isLoading" class="text-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && event" class="card">
+    <div class="">
+      <img
+        [src]="event.image || '/assets/images/event-placeholder.jpg'"
+        class="card-img-top w-100"
+        alt="{{ event.title }}"
+        style="max-height: 350px; object-fit: cover"
+      />
+      <div class="card-header bg-primary text-white">
+        <h2>{{ event.title }}</h2>
+      </div>
+      <div class="card-body">
+        <p><strong class="text-info">Description:</strong> {{ event.description }}</p>
+
+        <div class="row mb-4 mt-3">
+          <div class="col-md-6">
+            <p><strong class="text-info">Date:</strong> {{ event.date | date : "medium" }}</p>
+            <p><strong class="text-info">Location:</strong> {{ event.lieu }}</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong class="text-info">Capacity:</strong> {{ event.capacite }}</p>
+            <p>
+              <strong class="text-info">Price:</strong>
+              {{ event.prix | currency : "USD" : "symbol" : "1.2-2" }}
+            </p>
+            <p><strong class="text-info" >Category:</strong> {{ event.categorie }}</p>
+          </div>
+        </div>
+
+
+        <h4 class="text-success mt-4">
+          Participants ({{ participants.length }})
+        </h4>
+
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search participants..."
+            [(ngModel)]="searchTerm"
+            (input)="filterParticipants()"
+          />
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th class="text-info">Name</th>
+                <th class="text-info">Email</th>
+                <th class="text-info">Phone</th>
+                <th class="text-info">Payment Method</th>
+                <th class="text-info text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let participant of filteredParticipants">
+                <td>{{ participant.name }} {{ participant.surname }}</td>
+                <td>{{ participant.email }}</td>
+                <td>{{ participant.phone }}</td>
+                <td>
+                  <span
+                    class="badge"
+                    [ngClass]="{
+                      'bg-success':
+                        participant.paymentMethod === PaymentMethod.CREDIT_CARD,
+                      'bg-warning':
+                        participant.paymentMethod === PaymentMethod.CASH
+                    }"
+                  >
+                    {{ getPaymentMethodLabel(participant.paymentMethod) }}
+                  </span>
+                </td>
+                <td class="text-end">
+                  <button
+                    class="btn btn-sm btn-outline-success me-2"
+                    (click)="editParticipant(participant)"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    (click)="deleteParticipant(participant)"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr *ngIf="filteredParticipants.length === 0">
+                <td colspan="5" class="text-center text-muted py-4">
+                  No participants found
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <div class="text-muted">
+            Showing {{ filteredParticipants.length }} of
+            {{ participants.length }} participants
+          </div>
+          <nav>
+            <ul class="pagination pagination-sm">
+              <li class="page-item" [class.disabled]="currentPage === 1">
+                <a
+                  class="page-link"
+                  href="#"
+                  (click)="changePage(currentPage - 1, $event)"
+                  >Previous</a
+                >
+              </li>
+              <li
+                *ngFor="let page of getPageRange()"
+                class="page-item"
+                [class.active]="page === currentPage"
+              >
+                <a
+                  class="page-link"
+                  href="#"
+                  (click)="changePage(page, $event)"
+                  >{{ page }}</a
+                >
+              </li>
+              <li
+                class="page-item"
+                [class.disabled]="currentPage === totalPages"
+              >
+                <a
+                  class="page-link"
+                  href="#"
+                  (click)="changePage(currentPage + 1, $event)"
+                  >Next</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-success" (click)="goBack()">
+          Back to Events
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

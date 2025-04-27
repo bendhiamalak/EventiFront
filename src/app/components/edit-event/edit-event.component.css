@@ -1,0 +1,13 @@
+.modal-header {
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .modal-header .close {
+    padding: 1rem;
+    margin: -1rem -1rem -1rem auto;
+  }
+  
+  .modal-body {
+    padding: 1rem;
+  }

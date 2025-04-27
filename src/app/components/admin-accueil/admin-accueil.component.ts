@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './admin-accueil.component.css'
 })
 export class AdminAccueilComponent {
+  isSidebarCollapsed = false;
 
+  onSidebarToggle(isCollapsed: boolean) {
+    this.isSidebarCollapsed = isCollapsed;
+  }
 }

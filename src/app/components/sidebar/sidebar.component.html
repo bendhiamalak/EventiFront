@@ -57,11 +57,7 @@
     </li>
 
     <li class="nav-item logout-item mt-3">
-      <a
-        class="nav-link text-secondary"
-        (click)="logout()"
-        title="Se déconnecter"
-      >
+      <a class="nav-link text-danger" (click)="logout()" title="Se déconnecter">
         <i class="fas fa-sign-out-alt me-2"></i>
         <span *ngIf="!isCollapsed">Déconnexion</span>
       </a>

@@ -1,85 +1,157 @@
 {
-    "evenements": [
-      {
-        "title": "Tech Conference 2025",
-        "description": "A gathering of tech enthusiasts discussing the future of AI and Web3.",
-        "date": "2025-05-20",
-        "lieu": "Cité des Sciences, Tunis",
-        "capacite": 300,
-        "prix": 50,
-        "image": "img/conference1.jpg",
-        "categorie": "Conférences"
-      },
-      {
-        "title": "Startup Pitch Night",
-        "description": "Discover innovative startups pitching their ideas to investors.",
-        "date": "2025-06-05",
-        "lieu": "Flat6Labs, Tunis",
-        "capacite": 150,
-        "prix": 25,
-        "image": "img/conference2.jpg",
-        "categorie": "Séminaires"
-      },
-      {
-        "title": "Art & Culture Festival",
-        "description": "A 3-day celebration of Tunisian art, music, and culture.",
-        "date": "2025-07-10",
-        "lieu": "Amphithéâtre de Carthage",
-        "capacite": 500,
-        "prix": 30,
-        "image": "img/conference.jpg",
-        "categorie": "Conférences"
-      },
-      {
-        "title": "UX/UI Design Bootcamp",
-        "description": "Hands-on workshop on modern UX and UI techniques.",
-        "date": "2025-08-12",
-        "lieu": "GoMyCode, Lac 1",
-        "capacite": 60,
-        "prix": 80,
-        "image": "img/conference2.jpg",
-        "categorie": "Ateliers"
-      },
-      {
-        "title": "Art & Culture Festival",
-        "description": "Try out the latest games and meet top developers in the industry.",
-        "date": "2025-09-03",
-        "lieu": "Parc des Expositions du Kram",
-        "capacite": 1000,
-        "prix": 40,
-        "image": "img/conference1.jpg",
-        "categorie": "Conférences"
-      },
-      {
-        "title": "Tech Conference 2025",
-        "description": "A gathering of tech enthusiasts discussing the future of AI and Web3.",
-        "date": "2025-05-20",
-        "lieu": "Cité des Sciences, Tunis",
-        "capacite": 300,
-        "prix": 50,
-        "image": "img/conference1.jpg",
-        "categorie": "Conférences"
-      },
-      {
-        "title": "Startup Pitch Night",
-        "description": "Discover innovative startups pitching their ideas to investors.",
-        "date": "2025-06-05",
-        "lieu": "Flat6Labs, Tunis",
-        "capacite": 150,
-        "prix": 25,
-        "image": "img/conference2.jpg",
-        "categorie": "Séminaires"
-      },
-      {
-        "title": "Art & Culture Festival",
-        "description": "A 3-day celebration of Tunisian art, music, and culture.",
-        "date": "2025-07-10",
-        "lieu": "Amphithéâtre de Carthage",
-        "capacite": 500,
-        "prix": 30,
-        "image": "img/conference.jpg",
-        "categorie": "Conférences"
-      }
-    ]
-  }
-  
+  "evenements": [
+    {
+      "id": 1,
+      "title": "Tech Conference 2025",
+      "description": "A gathering of tech enthusiasts discussing the future of AI and Web3.",
+      "date": "2025-05-20",
+      "lieu": "Cité des Sciences, Tunis",
+      "capacite": 295,
+      "prix": 50,
+      "image": "img/conference1.jpg",
+      "categorie": "Conférences",
+      "participants": [
+        {
+          "id": 101,
+          "name": "Mohamed",
+          "surname": "Ben Ali",
+          "email": "mohamed.benali@example.com",
+          "phone": "20123456",
+          "paymentMethod": "CREDIT_CARD"
+        },
+        {
+          "id": 102,
+          "name": "Leila",
+          "surname": "Trabelsi",
+          "email": "leila.t@example.com",
+          "phone": "98765432",
+          "paymentMethod": "CASH"
+        },
+        
+        {
+          "name": "Malek",
+          "surname": "BenDhia",
+          "email": "malek.bendhia0@gmail.com",
+          "phone": "25368668",
+          "paymentMethod": 1,
+          "id": 103
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Startup Pitch Night",
+      "description": "Discover innovative startups pitching their ideas to investors.",
+      "date": "2025-06-05",
+      "lieu": "Flat6Labs, Tunis",
+      "capacite": 150,
+      "prix": 25,
+      "image": "img/conference2.jpg",
+      "categorie": "Séminaires",
+      "participants": [
+        {
+          "id": 201,
+          "name": "Ahmed",
+          "surname": "Khemiri",
+          "email": "ahmed.k@example.com",
+          "phone": "55112233",
+          "paymentMethod": "CREDIT_CARD"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Art & Culture Festival",
+      "description": "A 3-day celebration of Tunisian art, music, and culture.",
+      "date": "2025-07-10",
+      "lieu": "Amphithéâtre de Carthage",
+      "capacite": 500,
+      "prix": 30,
+      "image": "img/conference.jpg",
+      "categorie": "Conférences",
+      "participants": [
+        {
+          "id": 301,
+          "name": "Samira",
+          "surname": "Mahmoud",
+          "email": "samira.m@example.com",
+          "phone": "98765432",
+          "paymentMethod": "CASH"
+        },
+        {
+          "id": 302,
+          "name": "Youssef",
+          "surname": "Ghanmi",
+          "email": "youssef.g@example.com",
+          "phone": "20334455",
+          "paymentMethod": "CREDIT_CARD"
+        },
+        {
+          "id": 303,
+          "name": "Fatma",
+          "surname": "Zarrouk",
+          "email": "fatma.z@example.com",
+          "phone": "55667788",
+          "paymentMethod": "CASH"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "UX/UI Design Bootcamp",
+      "description": "Hands-on workshop on modern UX and UI techniques.",
+      "date": "2025-08-12",
+      "lieu": "GoMyCode, Lac 1",
+      "capacite": 60,
+      "prix": 80,
+      "image": "img/conference2.jpg",
+      "categorie": "Ateliers",
+      "participants": []
+    },
+    {
+      "id": 5,
+      "title": "Gaming Expo",
+      "description": "Try out the latest games and meet top developers in the industry.",
+      "date": "2025-09-03",
+      "lieu": "Parc des Expositions du Kram",
+      "capacite": 1000,
+      "prix": 40,
+      "image": "img/conference1.jpg",
+      "categorie": "Conférences",
+      "participants": [
+        {
+          "id": 501,
+          "name": "Karim",
+          "surname": "Bouazizi",
+          "email": "karim.b@example.com",
+          "phone": "99112233",
+          "paymentMethod": "CREDIT_CARD"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "test",
+      "description": "test",
+      "date": "2025-04-30T11:51:00.000Z",
+      "lieu": "CUN",
+      "capacite": 20,
+      "categorie": "conférences",
+      "prix": 20,
+      "image": "",
+      "participants": []
+    },
+    {
+      "id": 7,
+      "title": "test3",
+      "description": "test3",
+      "date": "2025-04-26T09:24:00.000Z",
+      "lieu": "test",
+      "capacite": 10,
+      "categorie": "ateliers",
+      "prix": 10,
+      "image": "",
+      "participants": []
+    }
+  ]
+}
