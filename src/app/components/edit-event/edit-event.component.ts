@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { Categorie, Evenement } from '../../../models/evenement';
 import { FileUploadService } from '../../services/file-upload.service';
+import { EvenementService } from '../../services/evenement.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-event',
@@ -25,8 +27,10 @@ export class EditEventComponent implements OnInit {
   message = '';
   previewUrl?: string;
   imageUrl: string | null = null;
+
   constructor(
     private fileUploadService: FileUploadService,
+    private evenementService: EvenementService,
     @Inject('BaseURL') public baseUrl: string
   ) {}
 
@@ -79,12 +83,18 @@ export class EditEventComponent implements OnInit {
     this.progress = 0;
     this.message = '';
     
-    if (this.currentFile && savedEvent.id) {
-      this.fileUploadService.upload(this.currentFile, savedEvent.id).subscribe({
+    if (this.currentFile) {
+      const uploadObservable = this.isUpdate && savedEvent.id
+        ? this.evenementService.updateEventImage(savedEvent.id, this.currentFile)
+        : this.fileUploadService.upload(this.currentFile, savedEvent.id!).pipe(
+            map(() => savedEvent)
+          );
+
+      uploadObservable.subscribe({
         next: (evt: any) => {
           if (evt.type === HttpEventType.UploadProgress && evt.total) {
             this.progress = Math.round(100 * evt.loaded / evt.total);
-          } else if (evt instanceof HttpResponse) {
+          } else if (evt instanceof HttpResponse || !evt.type) {
             this.message = 'File uploaded successfully';
             if (savedEvent.image) {
               this.imageUrl = this.fileUploadService.getImageUrl(savedEvent.image);
@@ -111,16 +121,27 @@ export class EditEventComponent implements OnInit {
     if (this.eventDate) {
       this.event.date = new Date(this.eventDate);
     }
-
+  
     // Ensure participants array is initialized
     if (!this.event.participants) {
       this.event.participants = [];
     }
-
+  
     this.isLoading = true;
+    
+    // Émettre l'événement pour que le composant parent gère la mise à jour
     this.submitEvent.emit(this.event);
   }
 
+  getImageUrl(): string | null {
+    if (this.previewUrl) {
+      return this.previewUrl;
+    }
+    if (this.event.image) {
+      return this.fileUploadService.getImageUrl(this.event.image);
+    }
+    return null;
+  }
   onCancel() {
     this.cancel.emit();
   }

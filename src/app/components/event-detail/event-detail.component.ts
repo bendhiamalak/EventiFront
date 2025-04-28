@@ -97,7 +97,7 @@ export class EventDetailComponent {
       console.log(event.image)
       return this.fileUploadService.getImageUrl(event.image);
     }
-    return 'assets/default-image.png'; // Une image par défaut si pas d'image
+    return 'img/conference1.jpg'; // Une image par défaut si pas d'image
   }
   calculateTotalPages(): void {
     this.totalPages = Math.ceil(this.filteredParticipants.length / this.itemsPerPage);

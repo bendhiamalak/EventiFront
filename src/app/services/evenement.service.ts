@@ -152,4 +152,12 @@ export class EvenementService {
       })
     );
   }
+
+  updateEventImage(eventId: number, imageFile: File): Observable<Evenement> {
+    return this.fileUploadService.upload(imageFile, eventId).pipe(
+      switchMap(() => {
+        return this.getEvenementById(eventId);
+      })
+    );
+  }
 }

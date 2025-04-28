@@ -4,6 +4,7 @@ import { Categorie, Evenement } from '../../../models/evenement';
 import { Router } from '@angular/router';
 import { EditEventComponent } from '../edit-event/edit-event.component';
 import { FileUploadService } from '../../services/file-upload.service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-admin-event',
@@ -147,31 +148,69 @@ export class AdminEventComponent {
 
   handleSubmit(event: Evenement) {
     this.isLoading = true;
-    
     const imageFile = this.editEventComponent?.currentFile;
-    
-    if (imageFile) {
-      this.eventService.createEventWithImage(event, imageFile).subscribe({
-        next: (savedEvent) => {
-          this.finishEventSubmission();
-        },
-        error: (err) => {
-          console.error('Error:', err);
-          this.isLoading = false;
-        }
-      });
+  
+    if (this.isUpdate) {
+      if (imageFile) {
+        // 1. Mettre à jour l'événement d'abord
+        this.eventService.updateEvent(event).pipe(
+          switchMap(updatedEvent => {
+            // 2. Ensuite, mettre à jour l'image
+            return this.eventService.updateEventImage(event.id!, imageFile);
+          })
+        ).subscribe({
+          next: (finalEvent) => {
+            this.finishEventSubmission();
+            console.log('Event and image updated successfully!');
+          },
+          error: (err) => {
+            console.error('Error updating event and image:', err);
+            this.isLoading = false;
+            this.showForm = false;
+          }
+        });
+      } else {
+        // Mise à jour sans nouvelle image
+        this.eventService.updateEvent(event).subscribe({
+          next: (updatedEvent) => {
+            this.finishEventSubmission();
+            console.log('Event updated without new image successfully!');
+          },
+          error: (err) => {
+            console.error('Error updating event:', err);
+            this.isLoading = false;
+            this.showForm = false;
+          }
+        });
+      }
     } else {
-      this.eventService.addEvent(event).subscribe({
-        next: (savedEvent) => {
-          this.finishEventSubmission();
-        },
-        error: (err) => {
-          console.error('Error:', err);
-          this.isLoading = false;
-        }
-      });
+      // Logique d'ajout
+      if (imageFile) {
+        this.eventService.createEventWithImage(event, imageFile).subscribe({
+          next: (savedEvent) => {
+            this.finishEventSubmission();
+          },
+          error: (err) => {
+            console.error('Error creating event with image:', err);
+            this.isLoading = false;
+            this.showForm = false;
+          }
+        });
+      } else {
+        this.eventService.addEvent(event).subscribe({
+          next: (savedEvent) => {
+            this.finishEventSubmission();
+          },
+          error: (err) => {
+            console.error('Error creating event:', err);
+            this.isLoading = false;
+            this.showForm = false;
+          }
+        });
+      }
     }
   }
+  
 
   finishEventSubmission() {
     this.getAllEvents();

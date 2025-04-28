@@ -28,8 +28,12 @@
         class="invalid-feedback"
       >
         <div *ngIf="title.errors?.['required']">Title is required.</div>
-        <div *ngIf="title.errors?.['minlength']">Title must be at least 3 characters long.</div>
-        <div *ngIf="title.errors?.['maxlength']">Title cannot exceed 100 characters.</div>
+        <div *ngIf="title.errors?.['minlength']">
+          Title must be at least 3 characters long.
+        </div>
+        <div *ngIf="title.errors?.['maxlength']">
+          Title cannot exceed 100 characters.
+        </div>
       </div>
     </div>
 
@@ -95,8 +99,12 @@
           class="invalid-feedback"
         >
           <div *ngIf="lieu.errors?.['required']">Location is required.</div>
-          <div *ngIf="lieu.errors?.['minlength']">Location must be at least 3 characters long.</div>
-          <div *ngIf="lieu.errors?.['maxlength']">Location cannot exceed 100 characters.</div>
+          <div *ngIf="lieu.errors?.['minlength']">
+            Location must be at least 3 characters long.
+          </div>
+          <div *ngIf="lieu.errors?.['maxlength']">
+            Location cannot exceed 100 characters.
+          </div>
         </div>
       </div>
     </div>
@@ -125,8 +133,12 @@
           class="invalid-feedback"
         >
           <div *ngIf="capacite.errors?.['required']">Capacity is required.</div>
-          <div *ngIf="capacite.errors?.['min']">Capacity must be at least 1.</div>
-          <div *ngIf="capacite.errors?.['max']">Capacity cannot exceed 1000.</div>
+          <div *ngIf="capacite.errors?.['min']">
+            Capacity must be at least 1.
+          </div>
+          <div *ngIf="capacite.errors?.['max']">
+            Capacity cannot exceed 1000.
+          </div>
         </div>
       </div>
 
@@ -181,7 +193,9 @@
           class="invalid-feedback"
         >
           <div *ngIf="prix.errors?.['required']">Price is required.</div>
-          <div *ngIf="prix.errors?.['min']">Price must be a positive number.</div>
+          <div *ngIf="prix.errors?.['min']">
+            Price must be a positive number.
+          </div>
         </div>
       </div>
 
@@ -198,7 +212,9 @@
             (change)="selectFile($event)"
           />
         </div>
-        <small class="form-text text-muted">Select an image file (max 5MB)</small>
+        <small class="form-text text-muted"
+          >Select an image file (max 5MB)</small
+        >
 
         <!-- Progress bar -->
         <div class="progress mt-2" *ngIf="currentFile && progress > 0">
@@ -215,10 +231,14 @@
         </div>
 
         <!-- Message -->
-        <div class="alert" [ngClass]="{
-          'alert-success': message && !message.includes('error'),
-          'alert-danger': message && message.includes('error')
-        }" *ngIf="message">
+        <div
+          class="alert"
+          [ngClass]="{
+            'alert-success': message && !message.includes('error'),
+            'alert-danger': message && message.includes('error')
+          }"
+          *ngIf="message"
+        >
           {{ message }}
         </div>
       </div>
@@ -229,7 +249,12 @@
       <label>Image Preview:</label>
       <div>
         <img
-          [src]="previewUrl || imageUrl || event.image || 'assets/images/default-event.png'"
+          [src]="
+            getImageUrl() ||
+            imageUrl ||
+            event.image ||
+            'assets/images/default-event.png'
+          "
           class="img-thumbnail"
           style="max-height: 200px"
           alt="Event preview"
