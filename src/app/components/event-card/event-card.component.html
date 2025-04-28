@@ -3,7 +3,7 @@
     <div class="blog-img">
       <a href="#">
         <img
-          [src]="evenement.image"
+          [src]="imageUrl(evenement) || 'img/conference1.jpg'"
           class="img-fluid w-100 rounded-top"
           alt="Image"
         />

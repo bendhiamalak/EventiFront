@@ -18,7 +18,7 @@ export class Evenement {
 }
 
 export enum Categorie {
-CONFERENCE = 'conférences',
-  SEMINAIRE = 'séminaires',
-  ATELIER = 'ateliers'
+CONFERENCE = 'CONFERENCE',
+  SEMINAIRE = 'SEMINAIRE',
+  ATELIER = 'ATELIER'
 }

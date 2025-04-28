@@ -1,4 +1,4 @@
-<div class="container ">
+<div class="container">
   <div *ngIf="isLoading" class="text-center">
     <div class="spinner-border text-primary" role="status">
       <span class="visually-hidden">Loading...</span>
@@ -8,7 +8,7 @@
   <div *ngIf="!isLoading && event" class="card">
     <div class="">
       <img
-        [src]="event.image || '/assets/images/event-placeholder.jpg'"
+        [src]="imageUrl(event) || 'img/conference1.jpg'"
         class="card-img-top w-100"
         alt="{{ event.title }}"
         style="max-height: 350px; object-fit: cover"
@@ -17,23 +17,32 @@
         <h2>{{ event.title }}</h2>
       </div>
       <div class="card-body">
-        <p><strong class="text-info">Description:</strong> {{ event.description }}</p>
+        <p>
+          <strong class="text-info">Description:</strong>
+          {{ event.description }}
+        </p>
 
         <div class="row mb-4 mt-3">
           <div class="col-md-6">
-            <p><strong class="text-info">Date:</strong> {{ event.date | date : "medium" }}</p>
+            <p>
+              <strong class="text-info">Date:</strong>
+              {{ event.date | date : "medium" }}
+            </p>
             <p><strong class="text-info">Location:</strong> {{ event.lieu }}</p>
           </div>
           <div class="col-md-6">
-            <p><strong class="text-info">Capacity:</strong> {{ event.capacite }}</p>
+            <p>
+              <strong class="text-info">Capacity:</strong> {{ event.capacite }}
+            </p>
             <p>
               <strong class="text-info">Price:</strong>
               {{ event.prix | currency : "USD" : "symbol" : "1.2-2" }}
             </p>
-            <p><strong class="text-info" >Category:</strong> {{ event.categorie }}</p>
+            <p>
+              <strong class="text-info">Category:</strong> {{ event.categorie }}
+            </p>
           </div>
         </div>
-
 
         <h4 class="text-success mt-4">
           Participants ({{ participants.length }})
@@ -101,7 +110,6 @@
             </tbody>
           </table>
         </div>
-
 
         <div class="d-flex justify-content-between align-items-center mt-3">
           <div class="text-muted">

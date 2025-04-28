@@ -34,7 +34,10 @@
 >
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
+      <!-- Your existing template code -->
+      <!-- Replace the edit-event component with this: -->
       <app-edit-event
+        *ngIf="showForm"
         [isUpdate]="isUpdate"
         [event]="selectedEvent"
         (submitEvent)="handleSubmit($event)"

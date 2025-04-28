@@ -3,6 +3,7 @@ import { Evenement } from '../../../models/evenement';
 import { Participant, PaymentMethod } from '../../../models/participant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EvenementService } from '../../services/evenement.service';
+import { FileUploadService } from '../../services/file-upload.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -23,7 +24,8 @@ export class EventDetailComponent {
   constructor(
     private router:Router,
     private route: ActivatedRoute,
-    private eventService: EvenementService
+    private eventService: EvenementService,
+    private fileUploadService:FileUploadService
   ) {}
 
   ngOnInit(): void {
@@ -90,6 +92,13 @@ export class EventDetailComponent {
     }
   }
 
+  imageUrl(event: Evenement): string {
+    if (event.image) {
+      console.log(event.image)
+      return this.fileUploadService.getImageUrl(event.image);
+    }
+    return 'assets/default-image.png'; // Une image par défaut si pas d'image
+  }
   calculateTotalPages(): void {
     this.totalPages = Math.ceil(this.filteredParticipants.length / this.itemsPerPage);
   }
