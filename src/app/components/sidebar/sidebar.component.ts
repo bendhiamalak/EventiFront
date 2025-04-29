@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +9,14 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class SidebarComponent {
   isCollapsed = false;
-  activeItem = 'dashboard';
+  activeItem = 'events';
 
   @Output() toggle = new EventEmitter<boolean>();
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed;
@@ -18,10 +25,11 @@ export class SidebarComponent {
 
   navigate(route: string) {
     this.activeItem = route;
-    // Tu peux ici router : this.router.navigate([route])
+    
   }
 
   logout() {
-    // Logique de déconnexion
+    this.authService.signOut();
+    this.router.navigate(['/']);
   }
 }

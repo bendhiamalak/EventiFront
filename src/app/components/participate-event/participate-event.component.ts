@@ -18,8 +18,8 @@ export class ParticipateEventComponent {
 
   getPaymentMethodLabel(method: PaymentMethod): string {
     switch(method) {
-      case PaymentMethod.CREDIT_CARD: return 'Credit Card';
-      case PaymentMethod.CASH: return 'Cash';
+      case PaymentMethod.CREDIT_CARD: return 'CREDIT_CARD';
+      case PaymentMethod.CASH: return 'CASH';
       default: 
         const exhaustiveCheck: never = method;
         return 'Unknown';

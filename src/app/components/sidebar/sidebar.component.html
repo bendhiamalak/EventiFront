@@ -23,16 +23,7 @@
   </div>
 
   <ul class="nav flex-column mt-3">
-    <li class="nav-item">
-      <a
-        class="nav-link"
-        (click)="navigate('dashboard')"
-        [class.active]="activeItem === 'dashboard'"
-      >
-        <i class="fas fa-tachometer-alt me-2"></i>
-        <span *ngIf="!isCollapsed">Tableau de bord</span>
-      </a>
-    </li>
+   
 
     <li class="nav-item">
       <a
@@ -45,16 +36,7 @@
       </a>
     </li>
 
-    <li class="nav-item">
-      <a
-        class="nav-link"
-        (click)="navigate('participants')"
-        [class.active]="activeItem === 'participants'"
-      >
-        <i class="fas fa-users me-2"></i>
-        <span *ngIf="!isCollapsed">Participants</span>
-      </a>
-    </li>
+    
 
     <li class="nav-item logout-item mt-3">
       <a class="nav-link text-danger" (click)="logout()" title="Se déconnecter">

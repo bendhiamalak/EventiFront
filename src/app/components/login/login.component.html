@@ -1,12 +1,16 @@
-<body>
+<div class="container-center">
   <div class="card border-primary mb-3" style="max-width: 25rem">
-    <img src="img/EventiLogo.png" alt="Clinic Logo" />
+    <img src="img/EventiLogo.png" alt="App Logo" />
     <div class="card-body">
-      <h4 class="card-title">Login</h4>
+      <h4 class="card-title">Admin Login</h4>
 
-      <form [formGroup]="loginForm">
-        <div>
-          <label for="emailInput" class="form-label">Email address</label>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="loginError" class="alert alert-danger mb-3">
+          Incorrect email or password
+        </div>
+
+        <div class="mb-3">
+          <label for="emailInput" class="form-label">Email</label>
           <input
             type="email"
             class="form-control"
@@ -23,11 +27,10 @@
           >
             <div *ngIf="email?.errors?.['required']">Email is required</div>
             <div *ngIf="email?.errors?.['email']">Invalid email format</div>
-            <div *ngIf="email?.errors?.['invalid']">Incorrect email</div>
           </div>
         </div>
 
-        <div>
+        <div class="mb-3">
           <label for="passwordInput" class="form-label">Password</label>
           <input
             type="password"
@@ -43,25 +46,21 @@
             *ngIf="password?.invalid && (password?.dirty || password?.touched)"
             class="invalid-feedback"
           >
-            <div *ngIf="password?.errors?.['required']">
-              Password is required
-            </div>
-            <div *ngIf="password?.errors?.['invalid']">Incorrect password</div>
+            Password is required
           </div>
         </div>
 
-        <div class="buttons-container mt-3">
+        <div class="d-grid gap-2">
           <button
-            type="button"
-            class="btn btn-info"
-            (click)="navigateToPatients()"
+            type="submit"
+            class="btn btn-primary"
             [disabled]="loginForm.invalid"
           >
             Login
           </button>
           <button
             type="button"
-            class="btn btn-danger"
+            class="btn btn-outline-secondary"
             (click)="navigateToHome()"
           >
             Cancel
@@ -70,4 +69,4 @@
       </form>
     </div>
   </div>
-</body>
+</div>
